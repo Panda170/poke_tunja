@@ -1,0 +1,103 @@
+<div
+  class="container-fluid timers-contariner"
+>
+  <div class="row">
+    <div class="col-1">
+      <button
+        ngbNavItem
+        type="button"
+        class="btn btn-ligth m-2"
+        (click)="runAllTimers()"
+      >
+        <mat-icon fontIcon="play_arrow"></mat-icon>
+      </button>
+    </div>
+    <div class="col-4">
+      <mat-form-field class="w-100">
+        <mat-label>Nombre</mat-label>
+        <input matInput placeholder="Nombre" [(ngModel)]="timer_name">
+      </mat-form-field>
+    </div>
+    <div class="col-2">
+      <mat-form-field class="w-100">
+        <mat-label>Minutos</mat-label>
+        <mat-select [(ngModel)]="current_minutes">
+          @for (min of MINUTES_LIST; track min) {
+          <mat-option [value]="min">{{min}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-2">
+      <mat-form-field class="w-100">
+        <mat-label>Adicional</mat-label>
+        <mat-select [(ngModel)]="additional_minutes">
+          @for (min of MINUTES_LIST; track min) {
+          <mat-option [value]="min">{{min}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-2">
+      <mat-form-field class="w-100">
+        <mat-label>Tcg</mat-label>
+        <mat-select [(ngModel)]="selected_tcg">
+          @for (tcg of TCG_TYPE; track tcg) {
+          <mat-option [value]="tcg">{{tcg}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-1">
+      <button
+        ngbNavItem
+        type="button"
+        class="btn btn-ligth m-2"
+        (click)="addTimer()"
+      >
+        <mat-icon fontIcon="add"></mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="row mt-2 h-100">
+    @for (timer of timers_list; track timer.id; let isLast = $last) {
+    <div
+      class="col-12 mh-100 position-relative"
+      [class]="[timer.tcg_bg, isLast ? '' : 'mb-2']"
+      style="border-radius: 5px"
+    >
+      <div class="d-flex">
+        <button
+          ngbNavItem
+          type="button"
+          class="btn btn-ligth"
+          (click)="runTimer(timer)"
+        >
+          <mat-icon fontIcon="play_arrow"></mat-icon>
+        </button>
+        <button
+          ngbNavItem
+          type="button"
+          class="btn btn-ligth"
+          (click)="pauseTimer(timer)"
+        >
+          <mat-icon fontIcon="pause"></mat-icon>
+        </button>
+        <button
+          ngbNavItem
+          type="button"
+          class="btn btn-ligth ms-auto"
+          (click)="deleteTimer(timer)"
+        >
+          <mat-icon fontIcon="delete"></mat-icon>
+        </button>
+      </div>
+      <div class="position-absolute top-50 start-50 translate-middle">
+        <p *ngIf="timer.name" class="timer-name w-100">{{timer.name}}</p>
+        <p class="timer-font w-100 text-center">{{timer.label}}</p>
+        <p *ngIf="timer.total_sub_seconds" class="sub-timer-font w-100 text-center">+{{timer.sub_label}}</p>
+      </div>
+    </div>
+    }
+  </div>
+</div>

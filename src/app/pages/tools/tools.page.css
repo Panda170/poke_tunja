@@ -1,0 +1,87 @@
+.digimon-img-bg {
+  background: linear-gradient(
+      rgba(128, 128, 128, 0.6),
+      rgba(128, 128, 128, 0.7)
+    ),
+    url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a36e39ed-2182-4fa3-af43-299e3d89d2de/db8r9vn-309911f9-19ce-4a8b-acbb-f3906047dc0e.png/v1/fill/w_1024,h_576,q_80,strp/digimon_wallpaper_by_scytheaandlanarkine_db8r9vn-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTc2IiwicGF0aCI6IlwvZlwvYTM2ZTM5ZWQtMjE4Mi00ZmEzLWFmNDMtMjk5ZTNkODlkMmRlXC9kYjhyOXZuLTMwOTkxMWY5LTE5Y2UtNGE4Yi1hY2JiLWYzOTA2MDQ3ZGMwZS5wbmciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.BSYJ9SMgJzhPSqFLx7kbCrMc_Tsg5hQ_dFeFfKdi2ik");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.pokemon-img-bg {
+  background: radial-gradient(
+      circle,
+      rgba(226, 226, 226, 0.6) 0%,
+      rgba(91, 91, 91, 0.7) 100%
+    ),
+    url("https://pbs.twimg.com/media/Fsxu8E_WIAAHCUk.jpg:large");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.poke-time-animation {
+  background: radial-gradient(
+      circle,
+      rgba(255, 129, 129, 0.7) 0%,
+      rgba(255, 0, 0, 0.9) 100%
+    ),
+    url("https://pbs.twimg.com/media/Fsxu8E_WIAAHCUk.jpg:large");
+  background-size: 300% 300%, cover;
+  background-position: center, center;
+  background-repeat: no-repeat;
+  animation: waveEffect 5s infinite ease-in-out;
+}
+
+.digi-time-animation {
+  background: radial-gradient(
+      circle,
+      rgba(255, 129, 129, 0.7) 0%,
+      rgba(255, 0, 0, 0.9) 100%
+    ),
+    url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a36e39ed-2182-4fa3-af43-299e3d89d2de/db8r9vn-309911f9-19ce-4a8b-acbb-f3906047dc0e.png/v1/fill/w_1024,h_576,q_80,strp/digimon_wallpaper_by_scytheaandlanarkine_db8r9vn-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTc2IiwicGF0aCI6IlwvZlwvYTM2ZTM5ZWQtMjE4Mi00ZmEzLWFmNDMtMjk5ZTNkODlkMmRlXC9kYjhyOXZuLTMwOTkxMWY5LTE5Y2UtNGE4Yi1hY2JiLWYzOTA2MDQ3ZGMwZS5wbmciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.BSYJ9SMgJzhPSqFLx7kbCrMc_Tsg5hQ_dFeFfKdi2ik");
+  background-size: 300% 300%, cover;
+  background-position: center, center;
+  background-repeat: no-repeat;
+  animation: waveEffect 5s infinite ease-in-out;
+}
+
+@keyframes waveEffect {
+  0% {
+    background-size: 300% 300%, cover;
+  }
+  50% {
+    background-size: 100% 100%, cover;
+  }
+  100% {
+    background-size: 300% 300%, cover;
+  }
+}
+
+.timers-contariner {
+  width: 100%;
+  height: 100vh;
+}
+
+.timer-font {
+  color: rgb(0, 0, 0);
+  font-size: 32px;
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.timer-name {
+  color: rgb(0, 0, 0);
+  font-size: 48px;
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.sub-timer-font {
+  font-size: 24px;
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 300;
+  font-style: normal;
+}

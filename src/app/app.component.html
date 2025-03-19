@@ -1,0 +1,23 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <div class="list-group">
+      <a routerLink="timer" class="list-group-item list-group-item-action"
+        >Temporizador</a
+      >
+    </div>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <div ngbNav class="nav-tabs">
+      <button
+        ngbNavItem
+        type="button"
+        class="btn btn-ligth"
+        (click)="drawer.toggle()"
+      >
+        <mat-icon fontIcon="menu"></mat-icon>
+      </button>
+    </div>
+    <router-outlet />
+  </div>
+</mat-drawer-container>
