@@ -8,7 +8,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "predeploy": "npx ng build --output-path docs --base-href /poke_tunja/",
+    "predeploy": "npx ng build --output-path docs --base-href /poke_tunja/ && mv docs/browser/* docs/",
     "deploy": "npx gh-pages -d docs"
   },
   "private": true,

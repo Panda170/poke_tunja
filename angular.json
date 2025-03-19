@@ -14,6 +14,7 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/my-project",
+            "baseHref": "/poke_tunja/",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
