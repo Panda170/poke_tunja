@@ -1,12 +1,15 @@
 {
   "name": "my-project",
   "version": "0.0.0",
+  "homepage": "https://panda170.github.io/poke_tunja/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "predeploy": "npx ng build --output-path docs --base-href /poke_tunja/",
+    "deploy": "npx gh-pages -d docs"
   },
   "private": true,
   "dependencies": {
@@ -33,6 +36,7 @@
     "@angular/compiler-cli": "^19.1.0",
     "@angular/localize": "^19.1.3",
     "@types/jasmine": "~5.1.0",
+    "gh-pages": "^6.3.0",
     "jasmine-core": "~5.5.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
