@@ -5,7 +5,7 @@ import { interval } from 'rxjs';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { TCG, TCG_PATH_AUDIO } from '../../models.ts/tcg.model';
+import { LAYOUT, TCG, TCG_PATH_AUDIO, URL_IMG } from '../../models.ts/tcg.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -25,12 +25,17 @@ export class ToolsPage {
   public timer_name = "";
   public current_minutes = 0;
   public additional_minutes = 0;
+  public layout = LAYOUT.ROWS;
+  public LAYOUTS = LAYOUT;
   public TCG_TYPE = [TCG.DIGIMON, TCG.POKEMON].sort((a, b) =>
     a.localeCompare(b)
   );
   public selected_tcg = this.TCG_TYPE[0];
   public MINUTES_LIST = [0, 1, 2, 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
 
+  public changeLayout() {
+    this.layout = this.layout === LAYOUT.ROWS ? LAYOUT.CARDS : LAYOUT.ROWS;
+  }
   public addTimer() {
     const timer = {
       id: Date.now(),
@@ -42,14 +47,17 @@ export class ToolsPage {
       total_sub_seconds: this.additional_minutes * 60,
       tcg: this.selected_tcg,
       lock_bg: false,
+      url_img: "",
       tcg_bg: '',
       timer_sub: {},
       sound: {},
     };
     if (this.selected_tcg === TCG.DIGIMON) {
+      timer.url_img = URL_IMG.DIGIMON;
       timer.tcg_bg = 'digimon-img-bg';
       timer.sound = new Audio(TCG_PATH_AUDIO.DIGIVICE_SOUND);
     } else {
+      timer.url_img = URL_IMG.POKEMON;
       timer.tcg_bg = 'pokemon-img-bg';
       timer.sound = new Audio(TCG_PATH_AUDIO.POKE_WIN_SOUND);
     }
@@ -81,6 +89,7 @@ export class ToolsPage {
       timer.isOn = false;
     }
   }
+
   public deleteTimer(data: any) {
     console.log(data);
     const indexOf = this.timers_list.findIndex((timer: any) => timer.id === data.id);
