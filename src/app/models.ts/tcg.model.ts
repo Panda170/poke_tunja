@@ -3,6 +3,6 @@ export enum TCG {
   POKEMON = 'POKEMON',
 }
 export enum TCG_PATH_AUDIO {
-    DIGIVICE_SOUND = '/app/assets/audio/digivice.mp3',
-    POKE_WIN_SOUND = '/app/assets/audio/pokemon.mp3',
+    DIGIVICE_SOUND = 'app/assets/audio/digivice.mp3',
+    POKE_WIN_SOUND = 'app/assets/audio/pokemon.mp3',
 }
