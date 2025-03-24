@@ -136,6 +136,17 @@ export class ToolsPage {
     }
   }
 
+  public modifyRound(data: any, action: "add" | "sub") {
+    const indexOf = this.timers_list.findIndex((timer: any) => timer.id === data.id);
+    if (indexOf === -1) return;
+    const timer = this.timers_list[indexOf];
+    if (action === "add") {
+      timer.round++;
+    } else if(action === "sub" && timer.round > 1) {
+      timer.round--;
+    }
+  }
+
   public resetTimer(data: any) {
     const indexOf = this.timers_list.findIndex((timer: any) => timer.id === data.id);
     if (indexOf !== -1) {

@@ -108,6 +108,24 @@
         >
           <mat-icon fontIcon="restart_alt"></mat-icon>
         </button>
+        @if (!timer.name) {
+          <button
+            ngbNavItem
+            type="button"
+            class="btn btn-ligth ms-2"
+            (click)="modifyRound(timer, 'add')"
+          >
+            <mat-icon fontIcon="keyboard_arrow_up"></mat-icon>
+          </button>
+          <button
+            ngbNavItem
+            type="button"
+            class="btn btn-ligth ms-2"
+            (click)="modifyRound(timer, 'sub')"
+          >
+            <mat-icon fontIcon="keyboard_arrow_down"></mat-icon>
+          </button>
+        }
         <button
           ngbNavItem
           type="button"
@@ -127,9 +145,7 @@
         >
           +{{timer.sub_label}}
         </p>
-        <p
-          [class]="['timer-h3', 'w-100', 'text-center', timer.font]"
-        >
+        <p [class]="['timer-h3', 'w-100', 'text-center', timer.font]">
           {{ timer.name ? timer.name : 'Ronda:' + timer.round}}
         </p>
       </div>
@@ -177,6 +193,24 @@
             >
               <mat-icon fontIcon="restart_alt"></mat-icon>
             </button>
+            @if (!timer.name) {
+              <button
+                ngbNavItem
+                type="button"
+                class="btn btn-ligth ms-2"
+                (click)="modifyRound(timer, 'add')"
+              >
+                <mat-icon fontIcon="keyboard_arrow_up"></mat-icon>
+              </button>
+              <button
+                ngbNavItem
+                type="button"
+                class="btn btn-ligth ms-2"
+                (click)="modifyRound(timer, 'sub')"
+              >
+                <mat-icon fontIcon="keyboard_arrow_down"></mat-icon>
+              </button>
+            }
             <button
               ngbNavItem
               type="button"
