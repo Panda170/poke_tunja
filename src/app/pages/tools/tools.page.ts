@@ -76,6 +76,7 @@ export class ToolsPage {
       total_seconds: this.current_minutes * 60,
       total_sub_seconds: this.additional_minutes * 60,
       tcg: this.selected_tcg,
+      font: "",
       lock_bg: false,
       url_img: "",
       tcg_bg: '',
@@ -85,10 +86,12 @@ export class ToolsPage {
     if (this.selected_tcg === TCG.DIGIMON) {
       timer.url_img = URL_IMG.DIGIMON;
       timer.tcg_bg = 'digimon-img-bg';
+      timer.font = 'digi-font';
       timer.sound = new Audio(TCG_PATH_AUDIO.DIGIVICE_SOUND);
     } else {
       timer.url_img = URL_IMG.POKEMON;
       timer.tcg_bg = 'pokemon-img-bg';
+      timer.font = 'poke-font';
       timer.sound = new Audio(TCG_PATH_AUDIO.POKE_WIN_SOUND);
     }
     this.timers_list.push(timer);

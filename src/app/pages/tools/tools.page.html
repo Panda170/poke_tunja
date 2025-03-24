@@ -1,6 +1,4 @@
-<div
-  class="container-fluid timers-contariner"
->
+<div class="container-fluid timers-contariner">
   <div class="row">
     <div class="col-1">
       <button
@@ -15,7 +13,7 @@
     <div class="col-3">
       <mat-form-field class="w-100">
         <mat-label>Nombre</mat-label>
-        <input matInput placeholder="Nombre" [(ngModel)]="timer_name">
+        <input matInput placeholder="Nombre" [(ngModel)]="timer_name" />
       </mat-form-field>
     </div>
     <div class="col-2">
@@ -63,7 +61,9 @@
         class="btn btn-ligth"
         (click)="toggleFullScreen()"
       >
-        <mat-icon [fontIcon]="isFullScreen ? 'fullscreen_exit' : 'fullscreen'"></mat-icon>
+        <mat-icon
+          [fontIcon]="isFullScreen ? 'fullscreen_exit' : 'fullscreen'"
+        ></mat-icon>
       </button>
       <button
         ngbNavItem
@@ -76,7 +76,8 @@
     </div>
   </div>
   <div class="row mt-2 h-100">
-    @for (timer of timers_list; track timer.id; let isLast = $last) {
+    @for (timer of timers_list; track timer.id; let isLast = $last) { @if(layout
+    === LAYOUTS.ROWS) {
     <div
       class="col-12 mh-100 position-relative"
       [class]="[timer.tcg_bg, isLast ? '' : 'mb-2']"
@@ -117,11 +118,78 @@
         </button>
       </div>
       <div class="position-absolute top-50 start-50 translate-middle">
-        <p class="timer-name w-100 text-center" >{{timer.label}}</p>
-        <p *ngIf="timer.total_sub_seconds" class="timer-font w-100 text-center">+{{timer.sub_label}}</p>
-        <p *ngIf="timer.name" class="sub-timer-font w-100 text-center">{{timer.name}}</p>
+        <p [class]="['timer-h1', 'w-100', 'text-center', timer.font]">
+          {{timer.label}}
+        </p>
+        <p
+          *ngIf="timer.total_sub_seconds"
+          [class]="['timer-h2', 'w-100', 'text-center', timer.font]"
+        >
+          +{{timer.sub_label}}
+        </p>
+        <p
+          *ngIf="timer.name"
+          [class]="['timer-h3', 'w-100', 'text-center', timer.font]"
+        >
+          {{timer.name}}
+        </p>
       </div>
     </div>
-    }
+    }@else if(layout === LAYOUTS.CARDS) {
+    <div class="col-4 p-2">
+      <div class="w-100 card-container">
+        <div class="card-h-90 py-5" [class]="[timer.tcg_bg]">
+          <p [class]="[timer.font, 'timer-h1', 'text-center']">
+            {{timer.label}}
+          </p>
+          <p
+            *ngIf="timer.total_sub_seconds"
+            [class]="['timer-h2', 'w-100', 'text-center', timer.font]"
+          >
+            +{{timer.sub_label}}
+          </p>
+          <p [class]="['timer-h3', 'w-100', 'text-center', timer.font]">
+            {{timer.name}}
+          </p>
+        </div>
+        <div class="card-h-10">
+          <div class="d-flex justify-content-evenly">
+            <button
+              ngbNavItem
+              type="button"
+              class="btn btn-ligth"
+              (click)="runTimer(timer)"
+            >
+              <mat-icon fontIcon="play_arrow"></mat-icon>
+            </button>
+            <button
+              ngbNavItem
+              type="button"
+              class="btn btn-ligth"
+              (click)="pauseTimer(timer)"
+            >
+              <mat-icon fontIcon="pause"></mat-icon>
+            </button>
+            <button
+              ngbNavItem
+              type="button"
+              class="btn btn-ligth"
+              (click)="resetTimer(timer)"
+            >
+              <mat-icon fontIcon="restart_alt"></mat-icon>
+            </button>
+            <button
+              ngbNavItem
+              type="button"
+              class="btn btn-ligth"
+              (click)="deleteTimer(timer)"
+            >
+              <mat-icon fontIcon="delete"></mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    } }
   </div>
 </div>

@@ -63,25 +63,45 @@
   height: 100vh;
 }
 
-.timer-font {
-  color: rgb(0, 0, 0);
-  font-size: 52px;
+.digi-font {
   font-family: "Press Start 2P", system-ui;
-  font-weight: 400;
-  font-style: normal;
 }
 
-.timer-name {
-  color: rgb(0, 0, 0);
+.poke-font {
+  font-family: "Pokemon Solid", sans-serif;
+}
+
+.timer-h1 {
+  color: black;
   font-size: 78px;
-  font-family: "Press Start 2P", system-ui;
   font-weight: 600;
   font-style: normal;
 }
 
-.sub-timer-font {
+.timer-h2 {
+  color: black;
+  font-size: 52px;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.timer-h3 {
+  color: black;
   font-size: 38px;
-  font-family: "Press Start 2P", system-ui;
   font-weight: 300;
   font-style: normal;
+}
+
+.card-container {
+  border: solid black 3px;
+  border-radius: 5px;
+  height: 50vh;
+}
+
+.card-h-90 {
+  height: 90%;
+}
+
+.card-h-10 {
+  height: 10%;
 }
