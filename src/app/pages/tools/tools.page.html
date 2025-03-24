@@ -57,14 +57,22 @@
       >
         <mat-icon fontIcon="add"></mat-icon>
       </button>
-      <!-- <button
+      <button
+        ngbNavItem
+        type="button"
+        class="btn btn-ligth"
+        (click)="toggleFullScreen()"
+      >
+        <mat-icon [fontIcon]="isFullScreen ? 'fullscreen_exit' : 'fullscreen'"></mat-icon>
+      </button>
+      <button
         ngbNavItem
         type="button"
         class="btn btn-ligth ms-auto"
         (click)="changeLayout()"
       >
         <mat-icon fontIcon="space_dashboard"></mat-icon>
-      </button> -->
+      </button>
     </div>
   </div>
   <div class="row mt-2 h-100">
@@ -95,6 +103,14 @@
           ngbNavItem
           type="button"
           class="btn btn-ligth ms-auto"
+          (click)="resetTimer(timer)"
+        >
+          <mat-icon fontIcon="restart_alt"></mat-icon>
+        </button>
+        <button
+          ngbNavItem
+          type="button"
+          class="btn btn-ligth ms-2"
           (click)="deleteTimer(timer)"
         >
           <mat-icon fontIcon="delete"></mat-icon>

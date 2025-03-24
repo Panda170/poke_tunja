@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { interval } from 'rxjs';
@@ -22,6 +22,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ToolsPage {
   public timers_list: any[] = [];
+  public isFullScreen = false;
   public timer_name = "";
   public current_minutes = 0;
   public additional_minutes = 0;
@@ -33,9 +34,34 @@ export class ToolsPage {
   public selected_tcg = this.TCG_TYPE[0];
   public MINUTES_LIST = [0, 1, 2, 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
 
+  constructor(private renderer: Renderer2) {}
+
   public changeLayout() {
     this.layout = this.layout === LAYOUT.ROWS ? LAYOUT.CARDS : LAYOUT.ROWS;
   }
+
+  public toggleFullScreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().then(() => {
+        this.isFullScreen = true;
+        this.renderer.addClass(document.body, 'fullscreen-mode');
+      });
+    } else {
+      document.exitFullscreen().then(() => {
+        this.isFullScreen = false;
+        this.renderer.removeClass(document.body, 'fullscreen-mode');
+      });
+    }
+  }
+
+  @HostListener('document:fullscreenchange')
+  onFullScreenChange() {
+    this.isFullScreen = !!document.fullscreenElement;
+    if (!this.isFullScreen) {
+      this.renderer.removeClass(document.body, 'hide-scrollbar');
+    }
+  }
+
   public addTimer() {
     const timer = {
       id: Date.now(),
@@ -43,6 +69,10 @@ export class ToolsPage {
       name: this.timer_name,
       label: `${this.pad(this.current_minutes)}:00`,
       sub_label: `${this.pad(this.additional_minutes)}:00`,
+      original_label: `${this.pad(this.current_minutes)}:00`,
+      original_sub_label: `${this.pad(this.additional_minutes)}:00`,
+      original_total_seconds: this.current_minutes * 60,
+      original_total_sub_seconds: this.additional_minutes * 60,
       total_seconds: this.current_minutes * 60,
       total_sub_seconds: this.additional_minutes * 60,
       tcg: this.selected_tcg,
@@ -91,13 +121,31 @@ export class ToolsPage {
   }
 
   public deleteTimer(data: any) {
-    console.log(data);
     const indexOf = this.timers_list.findIndex((timer: any) => timer.id === data.id);
     if (indexOf !== -1) {
       if (this.timers_list[indexOf].isOn) {
         this.timers_list[indexOf].timer_sub.unsubscribe();
       }
       this.timers_list.splice(indexOf, 1);
+    }
+  }
+
+  public resetTimer(data: any) {
+    const indexOf = this.timers_list.findIndex((timer: any) => timer.id === data.id);
+    if (indexOf !== -1) {
+      const timer = this.timers_list[indexOf];
+      if (timer) {
+        timer.isOn = false;
+        timer.lock_bg = false;
+        timer.timer_sub.unsubscribe();
+        timer.total_seconds = timer.original_total_seconds;
+        timer.total_sub_seconds = timer.original_total_sub_seconds;
+        timer.label = timer.original_label;
+        timer.sub_label = timer.original_sub_label;
+        timer.sound.pause();
+        timer.sound.currentTime = 0;
+        timer.tcg_bg = timer.tcg === TCG.DIGIMON ? 'digimon-img-bg' : 'pokemon-img-bg';
+      }
     }
   }
 
