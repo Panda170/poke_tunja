@@ -76,6 +76,7 @@ export class ToolsPage {
       total_seconds: this.current_minutes * 60,
       total_sub_seconds: this.additional_minutes * 60,
       tcg: this.selected_tcg,
+      round: 1,
       font: "",
       lock_bg: false,
       url_img: "",
@@ -120,6 +121,8 @@ export class ToolsPage {
     if (timer && timer.isOn) {
       timer.timer_sub.unsubscribe();
       timer.isOn = false;
+      timer.sound.pause();
+      timer.sound.currentTime = 0;
     }
   }
 
@@ -138,14 +141,17 @@ export class ToolsPage {
     if (indexOf !== -1) {
       const timer = this.timers_list[indexOf];
       if (timer) {
+        if (timer.timer_sub.unsubscribe) {
+          timer.timer_sub.unsubscribe();
+        }
         timer.isOn = false;
         timer.lock_bg = false;
-        timer.timer_sub.unsubscribe();
         timer.total_seconds = timer.original_total_seconds;
         timer.total_sub_seconds = timer.original_total_sub_seconds;
         timer.label = timer.original_label;
         timer.sub_label = timer.original_sub_label;
         timer.sound.pause();
+        timer.round++;
         timer.sound.currentTime = 0;
         timer.tcg_bg = timer.tcg === TCG.DIGIMON ? 'digimon-img-bg' : 'pokemon-img-bg';
       }

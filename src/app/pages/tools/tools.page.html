@@ -128,10 +128,9 @@
           +{{timer.sub_label}}
         </p>
         <p
-          *ngIf="timer.name"
           [class]="['timer-h3', 'w-100', 'text-center', timer.font]"
         >
-          {{timer.name}}
+          {{ timer.name ? timer.name : 'Ronda:' + timer.round}}
         </p>
       </div>
     </div>
@@ -149,7 +148,7 @@
             +{{timer.sub_label}}
           </p>
           <p [class]="['timer-h3', 'w-100', 'text-center', timer.font]">
-            {{timer.name}}
+            {{ timer.name ? timer.name : 'Ronda:' + timer.round}}
           </p>
         </div>
         <div class="card-h-10">
