@@ -107,25 +107,6 @@ export class ToolsPage {
     }
   }
 
-  public pauseAllTimers() {
-    for (const timer of this.timers_list) {
-      if (timer && timer.isOn) {
-        timer.timer_sub.unsubscribe();
-        timer.isOn = false;
-      }
-    }
-  }
-
-  public pauseTimer(data: any) {
-    const timer = this.timers_list.find((timer: any) => timer.id === data.id);
-    if (timer && timer.isOn) {
-      timer.timer_sub.unsubscribe();
-      timer.isOn = false;
-      timer.sound.pause();
-      timer.sound.currentTime = 0;
-    }
-  }
-
   public deleteTimer(data: any) {
     const indexOf = this.timers_list.findIndex((timer: any) => timer.id === data.id);
     if (indexOf !== -1) {
@@ -169,8 +150,16 @@ export class ToolsPage {
     }
   }
 
-  public runTimer(data: any) {
+  public toggleTimer(data: any) {
     const timer = this.timers_list.find((timer: any) => timer.id === data.id);
+    if (timer.isOn) {
+      this.pauseTimer(timer);
+    } else {
+      this.runTimer(timer);
+    }
+  }
+
+  private runTimer(timer: any) {
     if (timer && !timer.isOn) {
       timer.isOn = true;
       timer.timer_sub = interval(1000).subscribe(() => {
@@ -190,6 +179,15 @@ export class ToolsPage {
           timer.timer_sub.unsubscribe();
         }
       });
+    }
+  }
+
+  private pauseTimer(timer: any) {
+    if (timer && timer.isOn) {
+      timer.timer_sub.unsubscribe();
+      timer.isOn = false;
+      timer.sound.pause();
+      timer.sound.currentTime = 0;
     }
   }
 

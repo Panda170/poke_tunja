@@ -1,4 +1,4 @@
-<div class="container-fluid timers-contariner">
+<div class="container-fluid timers-container">
   <div class="row">
     <div class="col-1">
       <button
@@ -88,17 +88,9 @@
           ngbNavItem
           type="button"
           class="btn btn-ligth"
-          (click)="runTimer(timer)"
+          (click)="toggleTimer(timer)"
         >
-          <mat-icon fontIcon="play_arrow"></mat-icon>
-        </button>
-        <button
-          ngbNavItem
-          type="button"
-          class="btn btn-ligth"
-          (click)="pauseTimer(timer)"
-        >
-          <mat-icon fontIcon="pause"></mat-icon>
+          <mat-icon [fontIcon]="timer.isOn ? 'pause' : 'play_arrow'"></mat-icon>
         </button>
         <button
           ngbNavItem
@@ -109,22 +101,22 @@
           <mat-icon fontIcon="restart_alt"></mat-icon>
         </button>
         @if (!timer.name) {
-          <button
-            ngbNavItem
-            type="button"
-            class="btn btn-ligth ms-2"
-            (click)="modifyRound(timer, 'add')"
-          >
-            <mat-icon fontIcon="keyboard_arrow_up"></mat-icon>
-          </button>
-          <button
-            ngbNavItem
-            type="button"
-            class="btn btn-ligth ms-2"
-            (click)="modifyRound(timer, 'sub')"
-          >
-            <mat-icon fontIcon="keyboard_arrow_down"></mat-icon>
-          </button>
+        <button
+          ngbNavItem
+          type="button"
+          class="btn btn-ligth ms-2"
+          (click)="modifyRound(timer, 'add')"
+        >
+          <mat-icon fontIcon="keyboard_arrow_up"></mat-icon>
+        </button>
+        <button
+          ngbNavItem
+          type="button"
+          class="btn btn-ligth ms-2"
+          (click)="modifyRound(timer, 'sub')"
+        >
+          <mat-icon fontIcon="keyboard_arrow_down"></mat-icon>
+        </button>
         }
         <button
           ngbNavItem
@@ -173,18 +165,13 @@
               ngbNavItem
               type="button"
               class="btn btn-ligth"
-              (click)="runTimer(timer)"
+              (click)="toggleTimer(timer)"
             >
-              <mat-icon fontIcon="play_arrow"></mat-icon>
+              <mat-icon
+                [fontIcon]="timer.isOn ? 'pause' : 'play_arrow'"
+              ></mat-icon>
             </button>
-            <button
-              ngbNavItem
-              type="button"
-              class="btn btn-ligth"
-              (click)="pauseTimer(timer)"
-            >
-              <mat-icon fontIcon="pause"></mat-icon>
-            </button>
+
             <button
               ngbNavItem
               type="button"
@@ -194,22 +181,22 @@
               <mat-icon fontIcon="restart_alt"></mat-icon>
             </button>
             @if (!timer.name) {
-              <button
-                ngbNavItem
-                type="button"
-                class="btn btn-ligth ms-2"
-                (click)="modifyRound(timer, 'add')"
-              >
-                <mat-icon fontIcon="keyboard_arrow_up"></mat-icon>
-              </button>
-              <button
-                ngbNavItem
-                type="button"
-                class="btn btn-ligth ms-2"
-                (click)="modifyRound(timer, 'sub')"
-              >
-                <mat-icon fontIcon="keyboard_arrow_down"></mat-icon>
-              </button>
+            <button
+              ngbNavItem
+              type="button"
+              class="btn btn-ligth ms-2"
+              (click)="modifyRound(timer, 'add')"
+            >
+              <mat-icon fontIcon="keyboard_arrow_up"></mat-icon>
+            </button>
+            <button
+              ngbNavItem
+              type="button"
+              class="btn btn-ligth ms-2"
+              (click)="modifyRound(timer, 'sub')"
+            >
+              <mat-icon fontIcon="keyboard_arrow_down"></mat-icon>
+            </button>
             }
             <button
               ngbNavItem
